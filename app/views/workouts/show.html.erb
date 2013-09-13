@@ -1,0 +1,17 @@
+<%= @workout.name %>
+
+<% if @workout.exercises.any? %>
+	<ul>
+	<% @workout.exercises.each do |e| %>
+			<li>Name: <%= e.name %>
+				<ul>
+					<li>Desc: <%= e.description %></li>
+					<% if e.exercise_sets.any? %>
+						<li>weight: <%= e.exercise_sets.weight %></li>
+						<li>reps: <%= e.exercise_sets.reps %></li>
+					<% end %>
+				</ul>
+			</li>
+	<% end %>
+	</ul>
+<% end %>

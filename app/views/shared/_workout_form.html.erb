@@ -1,0 +1,51 @@
+<%= form_for @workout do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name, placeholder: "Workout name" %>
+
+	<%= f.label :type %>
+	<%= f.text_field :style %>
+
+	<%= f.label :intensity %>
+	<%= f.text_field :intensity %>
+
+	<%= f.label :difficulty %>
+	<%= f.text_field :difficulty %>
+
+	<%= f.label :eqipment %>
+	<%= f.select :equipment, options_for_select(["Standard Gym Equipment", "Bodyweight at Gym", "At Home", "Limited Gym Equipment", "Powerlifting Equipment"]) %>
+
+	<%= f.fields_for :exercises do |builder| %>
+		
+			<%= render "shared/exercise_form", f: builder %>
+
+			<%= builder.fields_for :exercise_sets do |b| %>
+				<p>
+					<%= b.label :reps %>
+					<%= b.text_field :reps %>
+				</p>
+				<p>
+					<%= b.label :weight %>
+					<%= b.text_field :weight %>
+				</p>
+			<% end %>
+		
+	<% end %>
+
+	<%= f.fields_for :exercises do |builder| %>
+		
+			<%= render "shared/exercise_form", f: builder %>
+		
+	<% end %>
+
+	<%= f.fields_for :exercises do |builder| %>
+		
+			<%= render "shared/exercise_form", f: builder %>
+		
+	<% end %>
+
+	<p>
+		<%= link_to_add_fields("Add Answer", f, :exercises) %>
+	</p>
+
+	<%= f.submit "Post Workout" %>
+<% end %>
